@@ -1,5 +1,10 @@
 import { StatusInfo } from './types';
 
+/**
+ * Info for each status code
+ * 
+ * @private
+ */
 export const statusesInfo: StatusInfo = {
   400: {
     status: 400,
