@@ -2,7 +2,7 @@ import { statuses, StatusCode } from '../../status';
 
 /**
  * Check if the status code is valid http status.
- * 
+ *
  * @private
  * @param status http status code.
  * @returns boolean

@@ -24,11 +24,11 @@ export type Schema<T> = Omit<Partial<Options<T>>, 'message'>;
 
 export type HttpError<T> = Omit<Error, 'message'> &
   T & {
-    //properties
+    // properties
     name: StatusName;
     text: string;
 
-    //methods
+    // methods
     toClient: () => ClientError<T>;
   };
 

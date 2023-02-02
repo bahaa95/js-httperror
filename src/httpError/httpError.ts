@@ -1,10 +1,5 @@
 import { StatusCode, StatusName, statuses, statusesInfo } from '../status';
-import {
-  Constructor,
-  Schema,
-  Options,
-  ClientError,
-} from './types';
+import { Constructor, Schema, Options, ClientError } from './types';
 import { isStatusValid } from '../utils/isStatusValid';
 
 /**

@@ -19,7 +19,9 @@ describe('statusesInfo', () => {
     });
 
     it('should return a status message', () => {
-      expect(statusesInfo[400].message).toBe('The request cannot be fulfilled due to bad syntax');
+      expect(statusesInfo[400].message).toBe(
+        'The request cannot be fulfilled due to bad syntax',
+      );
     });
   });
 
@@ -41,7 +43,9 @@ describe('statusesInfo', () => {
     });
 
     it('should return a status message', () => {
-      expect(statusesInfo['400'].message).toBe('The request cannot be fulfilled due to bad syntax');
+      expect(statusesInfo['400'].message).toBe(
+        'The request cannot be fulfilled due to bad syntax',
+      );
     });
   });
 });
