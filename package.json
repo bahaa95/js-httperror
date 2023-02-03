@@ -1,5 +1,5 @@
 {
-  "name": "node-httperror",
+  "name": "js-httperror",
   "version": "1.0.0",
   "description": "A package to work with httperror in nodejs",
   "author": "bahaa adel <probahaa9@gmail.com> (https://bahaa-adel.vercel.app)",
