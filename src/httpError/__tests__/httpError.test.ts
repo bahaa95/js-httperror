@@ -51,7 +51,7 @@ describe('HttpError', () => {
       status: 400,
       message: 'bad request error',
     });
-    const { status, name, text } = statusesInfo[400];
+    const { status, name, text, message } = statusesInfo[400];
 
     it('should return status code', () => {
       expect(error.status).toBe(status);
@@ -71,6 +71,15 @@ describe('HttpError', () => {
 
     it('should return error with status 500 when passed invalid status code', () => {
       expect(new HttpError({ status: 480 as any }).status).toBe(500);
+    });
+
+    it('should return the defualt message for the status code when pass invalid message', () => {
+      expect(new HttpError({ status: 400, message: 23 as any }).message).toBe(
+        message,
+      );
+      expect(new HttpError({ status: 400, message: {} as any }).message).toBe(
+        message,
+      );
     });
   });
 

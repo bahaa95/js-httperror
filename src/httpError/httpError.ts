@@ -28,7 +28,10 @@ export function createHttpError<T extends object>(
           : schema.status || statuses.Internal_Server_Error;
       this.name = statusesInfo[this.status].name;
       this.text = statusesInfo[this.status].text;
-      this.message = message || statusesInfo[this.status].message;
+      this.message =
+        message && typeof message === 'string'
+          ? message
+          : statusesInfo[this.status].message;
 
       Object.assign(this, {
         ...schema,
