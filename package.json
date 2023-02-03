@@ -14,7 +14,8 @@
     "nodejs",
     "error",
     "httperror",
-    "typescript"
+    "typescript",
+    "status"
   ],
   "license": "MIT",
   "repository": {
@@ -26,8 +27,8 @@
   },
   "homepage": "https://github.com/bahaa95/node-httperror#readme",
   "scripts": {
-    "test":"jest --config jestconfig.json",
-    "build":"tsc",
+    "test": "jest --config jestconfig.json",
+    "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
@@ -35,7 +36,7 @@
     "preversion": "npm run test && npm run lint",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
-    "coverage":"npm run test -- --coverage"
+    "test:coverage": "npm run test -- --coverage"
   },
   "devDependencies": {
     "@types/jest": "^29.4.0",
