@@ -2,8 +2,6 @@
 
 Create Http errors with custom schema for nodejs, express, etc. 
 
-This package is with zero dependencies.
-
 
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
@@ -25,7 +23,7 @@ create simple httperror.
 ```typescript
 import createHttpError from 'node-httperror'
 
-// createHttpError function use to create HttpError class
+// use createHttpError function to create HttpError class
 const HttpError = createHttpError();
 
 // create HttpError object
@@ -47,9 +45,9 @@ throw new HttpError({ status: 404, message: 'Blog not found.' });
 ```
 
 ### HttpError constructor options
-HttpError constructor take arg options object with properites
+HttpError constructor has argument options with properties
 - `status` - the status code for error default is `500`. We can also change the defualt status code from `500` to any status code. We will se this soon.
-- `message` - error message defualt is message for the status code error.
+- `message` - error message defualt is message for the status code.
 
 ```typescript
 import createHttpError from 'node-httperror';
@@ -223,11 +221,11 @@ interface Schema {
 // create HttpError class with your schema
 const HttpError = createHttpError<Schema>();
 
-// create type for HttpError constructor options
+// create type for options in HttpError constructor
 type HttpErrorOptions = Options<Schema>;
 
 /**
- * create type for CustomHttpError constructor options and
+ * create type for options in CustomHttpError constructor and
  *  make it extends the HttpErroroptions
  */
 type CustomHttpErrorOptions = HttpErrorOptions & {
@@ -241,6 +239,7 @@ class CustomHttpError extends HttpError {
     public readonly expose: boolean;
 
     constructor({ expose, ...httpErrorOptions }: CustomHttpErrorOptions) {
+        // send HttpError constructor options (status,message, etc) to HttpError class
         super(httpErrorOptions);
         this.expose = expose || this.status < 500;
     }
@@ -254,6 +253,7 @@ const error = new CustomHttpError({
     status: 400,
     message: 'some error occurred',
     date: new Date('2020-01-01'),
+    expose:true
 });
 
 console.log(HttpError.isValid(error)); // => true
