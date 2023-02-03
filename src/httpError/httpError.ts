@@ -47,6 +47,7 @@ export function createHttpError<T extends object>(
      * @param error - error object.
      * @returns boolean.
      */
+    /* tslint:disable */
     public static isValid<T extends Error>(error: T): boolean {
       if (!error) return false;
 

@@ -17,6 +17,7 @@ export type HttpErrorObject<T> = HttpError<
 
 export type Constructor<T extends object> = {
   new (options?: Options<T>): HttpErrorObject<T>;
+  /* tslint:disable */
   isValid: <T extends Error>(error: T) => boolean;
 };
 
