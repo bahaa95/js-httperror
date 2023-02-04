@@ -1,6 +1,6 @@
-# js-httperror
+# ts-httperror
 
-Create Http errors with custom schema for nodejs, express, etc(also work for browsers). 
+Create Http errors with custom schema for nodejs, express, etc(also work for javascript in browsers). 
 
 
 
@@ -10,10 +10,10 @@ Create Http errors with custom schema for nodejs, express, etc(also work for bro
 
 ## Installation
 
-Install js-httperror with npm.
+Install ts-httperror with npm.
 
 ```bash
-  npm install js-httperror
+  npm install ts-httperror
 ```
     
 ## Usage
@@ -21,7 +21,7 @@ Install js-httperror with npm.
 
 create simple httperror.
 ```typescript
-import createHttpError from 'js-httperror'
+import createHttpError from 'ts-httperror'
 
 // use createHttpError function to create HttpError class
 const HttpError = createHttpError();
@@ -31,7 +31,7 @@ const error = new HttpError({ status: 404, message: 'Blog not found.' });
 console.log(error);
 /**
  * Not_Found: Blog not found.
- * at new HttpError (user:\Programing\Wep\js-httperror\test.js:56:32)
+ * at new HttpError (user:\Programing\Wep\ts-httperror\test.js:56:32)
  * at Module._extensions..js (node:internal/modules/cjs/loader:1272:10)
  * ...
  * {
@@ -50,7 +50,7 @@ HttpError constructor has argument options with properties
 - `message` - error message defualt is message for the status code.
 
 ```typescript
-import createHttpError from 'js-httperror';
+import createHttpError from 'ts-httperror';
 
 const HttpError = createHttpError();
 
@@ -74,7 +74,7 @@ console.log(error3.message); // => Validation failed
 Change the defualt status from 500 to any other status. To do that just add the status option to createHttpError function.
 
 ```typescript
-import createHttpError from 'js-httperror';
+import createHttpError from 'ts-httperror';
 const HttpError = createHttpError({
     // change the default status from 500 to 400
     status: 400,
@@ -90,7 +90,7 @@ console.log(error.message) // => The request cannot be fulfilled due to bad synt
 Create custom schema for the HttpError.
 
 ```typescript
-import createHttpError from 'js-httperror';
+import createHttpError from 'ts-httperror';
 
 //create your schema interface
 interface Schema {
@@ -123,7 +123,7 @@ console.log(error2.public); // => false
 Create a custom schema for every feature in the app
 ```typescript
 // user/users.ts
-import createHttpError from 'js-httperror';
+import createHttpError from 'ts-httperror';
 
 interface Schema {
     feature?: 'users';
@@ -142,7 +142,7 @@ console.log(error.action); // => 'add'
 
 ```typescript
 // blog/blog.ts
-import createHttpError from 'js-httperror';
+import createHttpError from 'ts-httperror';
 
 interface Schema {
     feature?: 'blog';
@@ -163,7 +163,7 @@ console.log(error.action); // => 'delete'
 - `isValid` - A static method use to check if given error is valid HttpError.
 
 ```typescript
-import createHttpError from 'js-httperror';
+import createHttpError from 'ts-httperror';
 
 const HttpError = createHttpError();
 
@@ -174,7 +174,7 @@ console.log(HttpError.isValid(new Error())); // => false
 - `toClient` - method use to return only HttpError defualt options without custom options (custom schema).
 
 ```typescript
-import createHttpError from 'js-httperror';
+import createHttpError from 'ts-httperror';
 
 interface Schema {
     feature?: 'blog';
@@ -211,7 +211,7 @@ console.log(error.toClient());
 ### Custom HttpError Class
 Create custom HttpError class with your own properites and methods by extends the HttpError class.
 ```typescript
-import createHttpError, { Options } from 'js-httperror';
+import createHttpError, { Options } from 'ts-httperror';
 
 // create your schema for HttpError
 interface Schema {
@@ -268,7 +268,7 @@ error.toClient(); // also work
 ### Other features
 Get options type in HttpError constructor.
 ```typescript
-import createHttpError, { Options } from 'js-httperror';
+import createHttpError, { Options } from 'ts-httperror';
 
 interface Schema {
     date?: Date;
@@ -289,7 +289,7 @@ const error = new HttpError(options);
 Get type for HttpError object by using Hydrate.
 
 ```typescript
-import createHttpError, { Hydrate } from 'js-httperror';
+import createHttpError, { Hydrate } from 'ts-httperror';
 
 interface Schema {
     date?: Date;
@@ -311,7 +311,7 @@ logError(error);
 
 increase the readability to the error by using statuses
 ```typescript
-import createHttpError, { statuses } from 'js-httperror';
+import createHttpError, { statuses } from 'ts-httperror';
 
 const HttpError = createHttpError();
 

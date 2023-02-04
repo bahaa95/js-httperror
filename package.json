@@ -1,5 +1,5 @@
 {
-  "name": "js-httperror",
+  "name": "ts-httperror",
   "version": "1.0.0",
   "description": "A package to work with httperror in nodejs",
   "author": "bahaa adel <probahaa9@gmail.com> (https://bahaa-adel.vercel.app)",
@@ -15,7 +15,8 @@
     "error",
     "httperror",
     "typescript",
-    "status"
+    "status",
+    "ts-httperror"
   ],
   "license": "MIT",
   "repository": {
