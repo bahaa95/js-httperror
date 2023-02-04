@@ -21,12 +21,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bahaa95/node-httperror.git"
+    "url": "https://github.com/bahaa95/ts-httperror.git"
   },
   "bugs": {
-    "url": "https://github.com/bahaa95/node-httperror/issues"
+    "url": "https://github.com/bahaa95/ts-httperror/issues"
   },
-  "homepage": "https://github.com/bahaa95/node-httperror#readme",
+  "homepage": "https://github.com/bahaa95/ts-httperror#readme",
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
