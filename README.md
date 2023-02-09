@@ -1,12 +1,10 @@
 # ts-httperror
 
-Create Http errors with custom schema for nodejs, express, etc(also work for javascript in browsers). 
-
-
+Create Http errors with custom schema for nodejs, express, etc(also work for javascript in browsers).
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
-
+[![Coverage Status](https://coveralls.io/repos/github/bahaa95/ts-httperror/badge.svg?branch=main)](https://coveralls.io/github/bahaa95/ts-httperror?branch=main)
 
 ## Installation
 
@@ -15,13 +13,15 @@ Install ts-httperror with npm.
 ```bash
   npm install ts-httperror
 ```
-    
+
 ## Usage
+
 **_NOTE:_** All code is written with typescript. It's work the same for javascript just remove the types(interfaces, types).
 
 create simple httperror.
+
 ```typescript
-import createHttpError from 'ts-httperror'
+import createHttpError from 'ts-httperror';
 
 // use createHttpError function to create HttpError class
 const HttpError = createHttpError();
@@ -45,9 +45,11 @@ throw new HttpError({ status: 404, message: 'Blog not found.' });
 ```
 
 ### HttpError constructor options
-HttpError constructor has argument options with properties
-- `status` - the status code for error default is `500`. We can also change the defualt status code from `500` to any status code. We will se this soon.
-- `message` - error message defualt is message for the status code.
+
+HttpError constructor has an argument options object with properties
+
+- `status` - the status code for error default is `500`. We can also change the defualt status code from `500` to any status code. We will see this soon.
+- `message` - error message default is message for the status code.
 
 ```typescript
 import createHttpError from 'ts-httperror';
@@ -60,11 +62,7 @@ console.log(error1.message); // => Internal server error
 
 const error2 = new HttpError({ status: 404 });
 console.log(error2.status); // => 404
-console.log(error2.message);
-/**
- *  => The requested page could not be found but may be a
- *     vailable again in the future
- */
+console.log(error2.message); // => The requested page could not be found but may be a vailable again in the future
 
 const error3 = new HttpError({ status: 400, message: 'Validation failed' });
 console.log(error3.status); // => 400
@@ -76,17 +74,17 @@ Change the defualt status from 500 to any other status. To do that just add the 
 ```typescript
 import createHttpError from 'ts-httperror';
 const HttpError = createHttpError({
-    // change the default status from 500 to 400
-    status: 400,
+  // change the default status from 500 to 400
+  status: 400,
 });
 
 const error = new HttpError();
 console.log(error.status); // => 400
-console.log(error.message) // => The request cannot be fulfilled due to bad syntax
-
+console.log(error.message); // => The request cannot be fulfilled due to bad syntax
 ```
 
 ### Create custom HttpError schema
+
 Create custom schema for the HttpError.
 
 ```typescript
@@ -94,45 +92,46 @@ import createHttpError from 'ts-httperror';
 
 //create your schema interface
 interface Schema {
-    date: Date;
-    public?: boolean;
+  date: Date;
+  public?: boolean;
 }
 
 const HttpError = createHttpError<Schema>({
-    // add default values for your schema
-    public: true,
+  // add default values for your schema
+  public: true,
 });
-
-const error1 = new HttpError({
-    status: 404,
-    message: 'Blog not found',
-    date: new Date('2020-01-01'),
-});
-console.log(error1.date); // => 2020-01-01T00:00:00.000Z
-console.log(error1.public); // => true
 
 const error2 = new HttpError({
-    status: 400,
-    date: new Date('2020-01-01'),
-    public: false,
+  status: 400,
+  date: new Date('2020-01-01'),
+  public: false,
 });
 console.log(error2.date); // => 2020-01-01T00:00:00.000Z
 console.log(error2.public); // => false
+
+const error1 = new HttpError({
+  status: 404,
+  message: 'Blog not found',
+  date: new Date('2020-01-01'),
+});
+console.log(error1.date); // => 2020-01-01T00:00:00.000Z
+console.log(error1.public); // => true
 ```
 
-Create a custom schema for every feature in the app
+You can also create a custom schema for every feature in the app
+
 ```typescript
 // user/users.ts
 import createHttpError from 'ts-httperror';
 
 interface Schema {
-    feature?: 'users';
-    action: 'add' | 'update' | 'delete';
+  feature?: 'users';
+  action: 'add' | 'update' | 'delete';
 }
 
 const HttpError = createHttpError<Schema>({
-    // add default values for your schema
-    feature: 'users',
+  // add default values for your schema
+  feature: 'users',
 });
 
 const error = new HttpError({ status: 400, action: 'add' });
@@ -145,13 +144,13 @@ console.log(error.action); // => 'add'
 import createHttpError from 'ts-httperror';
 
 interface Schema {
-    feature?: 'blog';
-    action: 'add' | 'update' | 'delete';
+  feature?: 'blog';
+  action: 'add' | 'update' | 'delete';
 }
 
 const HttpError = createHttpError<Schema>({
-    // add default values for your schema
-    feature: 'blog',
+  // add default values for your schema
+  feature: 'blog',
 });
 
 const error = new HttpError({ status: 404, action: 'delete' });
@@ -160,6 +159,7 @@ console.log(error.action); // => 'delete'
 ```
 
 ### Api
+
 - `isValid` - A static method use to check if given error is valid HttpError.
 
 ```typescript
@@ -171,30 +171,30 @@ console.log(HttpError.isValid(new HttpError())); // => true
 console.log(HttpError.isValid(new Error())); // => false
 ```
 
-- `toClient` - method use to return only HttpError defualt options without custom options (custom schema).
+- `toClient` - method use to return HttpError object without custom schema options.
 
 ```typescript
 import createHttpError from 'ts-httperror';
 
 interface Schema {
-    feature?: 'blog';
-    details: string;
-    userId?: string;
-    userAgent?: string;
-    action: 'add' | 'update' | 'delete';
+  feature?: 'blog';
+  details: string;
+  userId?: string;
+  userAgent?: string;
+  action: 'add' | 'update' | 'delete';
 }
 
 const HttpError = createHttpError<Schema>({
-    feature: 'blog',
+  feature: 'blog',
 });
 
 const error = new HttpError({
-    status: 404,
-    action: 'delete',
-    message: 'Blog not found',
-    details: 'Blog with id=1234 not found',
-    userId: '123',
-    userAgent: '...',
+  status: 404,
+  action: 'delete',
+  message: 'Blog not found',
+  details: 'Blog with id=1234 not found',
+  userId: '123',
+  userAgent: '...',
 });
 
 console.log(error.toClient());
@@ -209,51 +209,53 @@ console.log(error.toClient());
 ```
 
 ### Custom HttpError Class
+
 Create custom HttpError class with your own properites and methods by extends the HttpError class.
+
 ```typescript
 import createHttpError, { Options } from 'ts-httperror';
 
 // create your schema for HttpError
 interface Schema {
-    date: Date;
+  date: Date;
 }
 
 // create HttpError class with your schema
 const HttpError = createHttpError<Schema>();
 
-// create type for options in HttpError constructor
+// create HttpErrorOptions type(options is the argument for HttpError constructor)
 type HttpErrorOptions = Options<Schema>;
 
 /**
- * create type for options in CustomHttpError constructor and
- *  make it extends the HttpErroroptions
+ * create CustomHttpErrorOptions type and make it extends the HttpErroroptions
+ * (options here is the argument for CustomHttpError constructor)
  */
 type CustomHttpErrorOptions = HttpErrorOptions & {
-    expose?: boolean;
+  expose?: boolean;
 };
 
 /**
  * create CustomHttpError class and make it extend the HttpError class
  */
 class CustomHttpError extends HttpError {
-    public readonly expose: boolean;
+  public readonly expose: boolean;
 
-    constructor({ expose, ...httpErrorOptions }: CustomHttpErrorOptions) {
-        // send HttpError constructor options (status,message, etc) to HttpError class
-        super(httpErrorOptions);
-        this.expose = expose || this.status < 500;
-    }
+  constructor({ expose, ...httpErrorOptions }: CustomHttpErrorOptions) {
+    // send HttpError constructor options (status,message, etc) to HttpError class
+    super(httpErrorOptions);
+    this.expose = expose || this.status < 500;
+  }
 
-    public log = (): void => {
-        console.log(this);
-    }
+  public log = (): void => {
+    console.log(this);
+  };
 }
 
 const error = new CustomHttpError({
-    status: 400,
-    message: 'some error occurred',
-    date: new Date('2020-01-01'),
-    expose:true
+  status: 400,
+  message: 'some error occurred',
+  date: new Date('2020-01-01'),
+  expose: true,
 });
 
 console.log(HttpError.isValid(error)); // => true
@@ -266,12 +268,14 @@ error.toClient(); // also work
 ```
 
 ### Other features
-Get options type in HttpError constructor.
+
+Get type for options(HttpError constructor argument).
+
 ```typescript
 import createHttpError, { Options } from 'ts-httperror';
 
 interface Schema {
-    date?: Date;
+  date?: Date;
 }
 
 const HttpError = createHttpError<Schema>();
@@ -279,8 +283,8 @@ const HttpError = createHttpError<Schema>();
 type HttpErrorOptions = Options<Schema>;
 
 const options: HttpErrorOptions = {
-    status: 404,
-    date: new Date(),
+  status: 404,
+  date: new Date(),
 };
 
 const error = new HttpError(options);
@@ -292,7 +296,7 @@ Get type for HttpError object by using Hydrate.
 import createHttpError, { Hydrate } from 'ts-httperror';
 
 interface Schema {
-    date?: Date;
+  date?: Date;
 }
 
 const HttpError = createHttpError<Schema>();
@@ -303,13 +307,14 @@ type HttpErrorObject = Hydrate<Schema>;
 const error = new HttpError();
 
 function logError(error: HttpErrorObject) {
-    console.log(error);
+  console.log(error);
 }
 
 logError(error);
 ```
 
 increase the readability to the error by using statuses
+
 ```typescript
 import createHttpError, { statuses } from 'ts-httperror';
 
