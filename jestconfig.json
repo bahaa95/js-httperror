@@ -3,5 +3,9 @@
     "^.+\\.(t|j)s?$": "ts-jest"
   },
   "testRegex": "(/__tests__/.*|(\\.|/) (test|spec))\\.(js?|ts?)$",
-  "moduleFileExtensions": ["ts", "js"]
+  "moduleFileExtensions": ["ts", "js"],
+  "verbose": true,
+  "coverageProvider": "v8",
+  "collectCoverage": true,
+  "coverageReporters": ["clover", "json", "lcov", "text"]
 }
