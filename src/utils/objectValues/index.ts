@@ -11,7 +11,8 @@ export function objectValues<T>(obj: { [s: string]: T }): T[] {
   }
 
   const values = [] as T[];
-  for (let key in obj) {
+  /* tslint:disable */
+  for (const key in obj) {
     values.push(obj[key]);
   }
 
