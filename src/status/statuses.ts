@@ -1,5 +1,6 @@
 import { statusesInfo } from './statusesInfo';
 import { Status } from './types';
+import { objectValues } from '../utils/objectValues';
 
 /**
  * http status codes
@@ -11,7 +12,7 @@ import { Status } from './types';
  * console.log(statuses.Bad_Request); => 400
  * ```
  */
-export const statuses = Object.values(statusesInfo).reduce(
+export const statuses = objectValues(statusesInfo).reduce(
   (accumulator, status) => {
     return { ...accumulator, [status.name]: status.status };
   },

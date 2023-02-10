@@ -1,4 +1,5 @@
 import { statuses, StatusCode } from '../../status';
+import { objectValues } from '../objectValues';
 
 /**
  * Check if the status code is valid http status.
@@ -8,5 +9,5 @@ import { statuses, StatusCode } from '../../status';
  * @returns boolean
  */
 export function isStatusValid(status: StatusCode): boolean {
-  return Object.values(statuses).includes(status);
+  return objectValues(statuses).includes(status);
 }
