@@ -4,7 +4,7 @@ import { objectValues } from '../objectValues';
 /**
  * Check if the status code is valid http status.
  *
- * @private
+ * @access private
  * @param status http status code.
  * @returns boolean
  */

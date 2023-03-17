@@ -1,7 +1,7 @@
 /**
  * Returns an array of values of the object .
  *
- * @private
+ * @access private
  * @param obj object.
  * @returns array
  */

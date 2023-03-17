@@ -5,8 +5,8 @@ import { isStatusValid } from '../utils/isStatusValid';
 /**
  * Create HttpError class with given schema.
  *
- * @public
- * @param schema custom error schema.
+ * @access public
+ * @param schema defualt values for custom error schema.
  * @returns HttpError class.
  */
 export function createHttpError<T extends object>(
@@ -43,7 +43,7 @@ export function createHttpError<T extends object>(
     /**
      * Check if the given error is valid HttpError.
      *
-     * @public
+     * @access public
      * @param error - error object.
      * @returns boolean.
      */
@@ -62,10 +62,10 @@ export function createHttpError<T extends object>(
     /**
      * Return HttpError object with {status,name,text,message} properties
      *
-     * @public
+     * @access public
      * @return {object} error object with properties {status,name,text,message}.
      *
-     * Basic usage example:
+     * @example
      * ```ts
      * const error = new HttpError({
      * status:404,

@@ -5,9 +5,9 @@ import { objectValues } from '../utils/objectValues';
 /**
  * http status codes
  *
- * @public
+ * @access public
  *
- * * basic usage example
+ * @example
  * ```ts
  * console.log(statuses.Bad_Request); => 400
  * ```
