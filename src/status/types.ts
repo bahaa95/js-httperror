@@ -15,8 +15,7 @@ type StatusCode =
   | 304
   | 306
   | 307
-  | 308
-  | ErrorStatusCode;
+  | 308;
 
 type StatusName =
   | 'Continue'
@@ -35,8 +34,7 @@ type StatusName =
   | 'Not_Modified'
   | 'unused'
   | 'Temporary_Redirect'
-  | 'Permanent_Redirect'
-  | ErrorStatusName;
+  | 'Permanent_Redirect';
 
 export type ErrorStatusCode =
   | 400
