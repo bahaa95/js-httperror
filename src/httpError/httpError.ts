@@ -1,4 +1,9 @@
-import { StatusCode, StatusName, statuses, statusesInfo } from '../status';
+import {
+  ErrorStatusCode,
+  ErrorStatusName,
+  errorStatusess,
+  statusesInfo,
+} from '../status';
 import { Constructor, Schema, Options, ClientError } from './types';
 import { isStatusValid } from '../utils/isStatusValid';
 
@@ -13,8 +18,8 @@ export function createHttpError<T extends object>(
   schema: Schema<T> = {} as Schema<T>,
 ) {
   return class HttpError extends Error {
-    public readonly status: StatusCode;
-    public readonly name: StatusName;
+    public readonly status: ErrorStatusCode;
+    public readonly name: ErrorStatusName;
     public readonly text: string;
     public readonly message: string;
 
@@ -25,7 +30,7 @@ export function createHttpError<T extends object>(
       this.status =
         status && isStatusValid(status)
           ? status
-          : schema.status || statuses.Internal_Server_Error;
+          : schema.status || errorStatusess.Internal_Server_Error;
       this.name = statusesInfo[this.status].name;
       this.text = statusesInfo[this.status].text;
       this.message =
@@ -51,7 +56,7 @@ export function createHttpError<T extends object>(
     public static isValid<T extends Error>(error: T): boolean {
       if (!error) return false;
 
-      const isNameExists = Object.keys(statuses).includes(error.name);
+      const isNameExists = Object.keys(errorStatusess).includes(error.name);
       return (
         error instanceof HttpError &&
         isNameExists &&

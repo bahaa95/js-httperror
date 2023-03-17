@@ -1,4 +1,44 @@
-export type StatusCode =
+type StatusCode =
+  | 100
+  | 101
+  | 200
+  | 201
+  | 202
+  | 203
+  | 204
+  | 205
+  | 206
+  | 300
+  | 301
+  | 302
+  | 303
+  | 304
+  | 306
+  | 307
+  | 308
+  | ErrorStatusCode;
+
+type StatusName =
+  | 'Continue'
+  | 'Switching_Protocols'
+  | 'Ok'
+  | 'Created'
+  | 'Accepted'
+  | 'Non_Authoritative_Information'
+  | 'No_Content'
+  | 'Reset_Content'
+  | 'Partial_Content'
+  | 'Multiple_Choices'
+  | 'Moved_Permanently'
+  | 'Found'
+  | 'See_Other'
+  | 'Not_Modified'
+  | 'unused'
+  | 'Temporary_Redirect'
+  | 'Permanent_Redirect'
+  | ErrorStatusName;
+
+export type ErrorStatusCode =
   | 400
   | 401
   | 402
@@ -36,7 +76,7 @@ export type StatusCode =
   | 510
   | 511;
 
-export type StatusName =
+export type ErrorStatusName =
   | 'Bad_Request'
   | 'Unauthorized'
   | 'Payment_Required'
@@ -75,13 +115,14 @@ export type StatusName =
   | 'Network_Authentication_Required';
 
 export type StatusInfo = Record<
-  StatusCode,
+  ErrorStatusCode,
   {
-    status: StatusCode;
-    name: StatusName;
+    status: ErrorStatusCode;
+    name: ErrorStatusName;
     text: string;
     message: string;
   }
 >;
 
-export type Status = Record<StatusName, StatusCode>;
+export type Statuses = Record<StatusName, StatusCode>;
+export type ErrorStatus = Record<ErrorStatusName, ErrorStatusCode>;

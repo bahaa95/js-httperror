@@ -1,4 +1,4 @@
-import { statuses, StatusCode } from '../../status';
+import { statuses, ErrorStatusCode } from '../../status';
 import { objectValues } from '../objectValues';
 
 /**
@@ -8,6 +8,6 @@ import { objectValues } from '../objectValues';
  * @param status http status code.
  * @returns boolean
  */
-export function isStatusValid(status: StatusCode): boolean {
+export function isStatusValid(status: ErrorStatusCode): boolean {
   return objectValues(statuses).includes(status);
 }

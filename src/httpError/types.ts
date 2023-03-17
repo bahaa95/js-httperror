@@ -1,9 +1,9 @@
-import { StatusCode, StatusName } from '../status';
+import { ErrorStatusCode, ErrorStatusName } from '../status';
 
 type CombineTypes<T1, T2> = T1 & T2;
 
 type DefaultOptions = {
-  status?: StatusCode;
+  status?: ErrorStatusCode;
   message?: string;
 };
 
@@ -26,7 +26,7 @@ export type Schema<T> = Omit<Partial<Options<T>>, 'message'>;
 export type HttpError<T> = Omit<Error, 'message'> &
   T & {
     // properties
-    name: StatusName;
+    name: ErrorStatusName;
     text: string;
 
     // methods
