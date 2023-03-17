@@ -18,7 +18,7 @@ describe('ObjectValues function', () => {
     expect(objectValues(undefined)).toEqual([]);
     //@ts-ignore
     expect(objectValues(1)).toEqual([]);
-     //@ts-ignore
-     expect(objectValues([])).toEqual([]);
+    //@ts-ignore
+    expect(objectValues([])).toEqual([]);
   });
 });
