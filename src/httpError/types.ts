@@ -17,6 +17,14 @@ export type HttpErrorObject<T> = HttpError<
 
 export type Constructor<T extends object> = {
   new (options?: Options<T>): HttpErrorObject<T>;
+
+  /**
+   * Check if the given error is valid HttpError.
+   *
+   * @access public
+   * @param error - error object.
+   * @returns boolean.
+   */
   /* tslint:disable */
   isValid: <T extends Error>(error: T) => boolean;
 };
@@ -30,6 +38,31 @@ export type HttpError<T> = Omit<Error, 'message'> &
     text: string;
 
     // methods
+    /**
+     * Return HttpError object with {status,name,text,message} properties
+     *
+     * @access public
+     * @return {object} error object with properties {status,name,text,message}.
+     *
+     * @example
+     * ```ts
+     * const error = new HttpError({
+     * status:404,
+     * message:'Post not found',
+     * details:'cant found post with id=1234',
+     * userId:'12',
+     * userAgent:'user agent'
+     * })
+     *
+     * console.log(error.toClient())
+     *  => {
+     * status:404,
+     * name:'Not_Found',
+     * text:'Not Found',
+     * message:'Post not found',
+     * }
+     * ```
+     */
     toClient: () => ClientError<T>;
   };
 

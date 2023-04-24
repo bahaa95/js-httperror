@@ -45,13 +45,6 @@ export function createHttpError<T extends object>(
       Object.setPrototypeOf(this, HttpError.prototype);
     }
 
-    /**
-     * Check if the given error is valid HttpError.
-     *
-     * @access public
-     * @param error - error object.
-     * @returns boolean.
-     */
     /* tslint:disable */
     public static isValid<T extends Error>(error: T): boolean {
       if (!error) return false;
@@ -64,31 +57,6 @@ export function createHttpError<T extends object>(
       );
     }
 
-    /**
-     * Return HttpError object with {status,name,text,message} properties
-     *
-     * @access public
-     * @return {object} error object with properties {status,name,text,message}.
-     *
-     * @example
-     * ```ts
-     * const error = new HttpError({
-     * status:404,
-     * message:'Post not found',
-     * details:'cant found post with id=1234',
-     * userId:'12',
-     * userAgent:'user agent'
-     * })
-     *
-     * console.log(error.toClient())
-     *  => {
-     * status:404,
-     * name:'Not_Found',
-     * text:'Not Found',
-     * message:'Post not found',
-     * }
-     * ```
-     */
     public toClient() {
       const { status, name, text, message } = this;
       return { status, name, text, message } as ClientError<T>;
