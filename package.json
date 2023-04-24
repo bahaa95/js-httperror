@@ -14,8 +14,9 @@
     "nodejs",
     "error",
     "httperror",
+    "httperrors",
     "typescript",
-    "status",
+    "statuses",
     "ts-httperror"
   ],
   "license": "MIT",

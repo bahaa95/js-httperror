@@ -1,10 +1,26 @@
 import { statusesInfo } from './statusesInfo';
-import { ErrorStatus, Statuses } from './types';
+import {
+  ErrorStatuses,
+  InformationalStatuses,
+  SuccessStatuses,
+  RedirectStatuses,
+} from './types';
 import { objectValues } from '../utils/objectValues';
 
-const successStatuses: Statuses = {
+/**
+ * informational statuses
+ * @access private
+ */
+const informationalStatuses: InformationalStatuses = {
   Continue: 100,
   Switching_Protocols: 101,
+};
+
+/**
+ * success statuses
+ * @access private
+ */
+const successStatuses: SuccessStatuses = {
   Ok: 200,
   Created: 201,
   Accepted: 202,
@@ -12,6 +28,13 @@ const successStatuses: Statuses = {
   No_Content: 204,
   Reset_Content: 205,
   Partial_Content: 206,
+};
+
+/**
+ * redirect statuses
+ * @access private
+ */
+const redirectStatuses: RedirectStatuses = {
   Multiple_Choices: 300,
   Moved_Permanently: 301,
   Found: 302,
@@ -37,7 +60,7 @@ export const errorStatusess = objectValues(statusesInfo).reduce(
     return { ...accumulator, [status.name]: status.status };
   },
   {},
-) as ErrorStatus;
+) as ErrorStatuses;
 
 /**
  * http status codes
@@ -46,10 +69,15 @@ export const errorStatusess = objectValues(statusesInfo).reduce(
  *
  * @example
  * ```ts
+ * console.log(statuses.Ok); => 200
  * console.log(statuses.Bad_Request); => 400
  * ```
  */
 export const statuses = {
+  ...informationalStatuses,
   ...successStatuses,
+  ...redirectStatuses,
   ...errorStatusess,
 };
+
+export type Statuses = typeof statuses;

@@ -1,40 +1,22 @@
-type StatusCode =
-  | 100
-  | 101
-  | 200
-  | 201
-  | 202
-  | 203
-  | 204
-  | 205
-  | 206
-  | 300
-  | 301
-  | 302
-  | 303
-  | 304
-  | 306
-  | 307
-  | 308;
+export type InformationalStatuses = Record<'Continue', 100> &
+  Record<'Switching_Protocols', 101>;
 
-type StatusName =
-  | 'Continue'
-  | 'Switching_Protocols'
-  | 'Ok'
-  | 'Created'
-  | 'Accepted'
-  | 'Non_Authoritative_Information'
-  | 'No_Content'
-  | 'Reset_Content'
-  | 'Partial_Content'
-  | 'Multiple_Choices'
-  | 'Moved_Permanently'
-  | 'Found'
-  | 'See_Other'
-  | 'Not_Modified'
-  | 'unused'
-  | 'Temporary_Redirect'
-  | 'Permanent_Redirect';
+export type SuccessStatuses = Record<'Ok', 200> &
+  Record<'Created', 201> &
+  Record<'Accepted', 202> &
+  Record<'Non_Authoritative_Information', 203> &
+  Record<'No_Content', 204> &
+  Record<'Reset_Content', 205> &
+  Record<'Partial_Content', 206>;
+
+export type RedirectStatuses = Record<'Multiple_Choices', 300> &
+  Record<'Moved_Permanently', 301> &
+  Record<'Found', 302> &
+  Record<'See_Other', 303> &
+  Record<'Not_Modified', 304> &
+  Record<'unused', 306> &
+  Record<'Temporary_Redirect', 307> &
+  Record<'Permanent_Redirect', 308>;
 
 export type ErrorStatusCode =
   | 400
@@ -112,6 +94,8 @@ export type ErrorStatusName =
   | 'Not_Extended'
   | 'Network_Authentication_Required';
 
+export type ErrorStatuses = Record<ErrorStatusName, ErrorStatusCode>;
+
 export type StatusInfo = Record<
   ErrorStatusCode,
   {
@@ -121,6 +105,3 @@ export type StatusInfo = Record<
     message: string;
   }
 >;
-
-export type Statuses = Record<StatusName, StatusCode>;
-export type ErrorStatus = Record<ErrorStatusName, ErrorStatusCode>;
