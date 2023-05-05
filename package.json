@@ -1,7 +1,7 @@
 {
   "name": "ts-httperror",
   "version": "1.1.2",
-  "description": "A package to work with httperror in nodejs",
+  "description": "Create custom Http errors for node js, express, etc in simple and efficient way.",
   "author": "bahaa adel <probahaa9@gmail.com> (https://bahaa-adel.vercel.app)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -52,6 +52,6 @@
     "typescript": "^4.9.4"
   },
   "engines": {
-    "node": ">= 6.0.x"
+    "node": ">= 6.x"
   }
 }

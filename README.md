@@ -20,7 +20,7 @@ Install ts-httperror with npm.
 
 **_NOTE:_** All code is written with typescript. It's work the same for javascript just remove the types(interfaces, types).
 
-create simple httperror.
+create simple HttpError class.
 
 ```typescript
 import { createHttpError } from 'ts-httperror';
@@ -28,7 +28,7 @@ import { createHttpError } from 'ts-httperror';
 // use createHttpError function to create HttpError class
 const HttpError = createHttpError();
 
-// create HttpError object
+// create error object
 const error = new HttpError({ status: 404, message: 'Blog not found.' });
 console.log(error);
 /**
@@ -36,10 +36,9 @@ console.log(error);
  * at new HttpError (user:\Programing\Wep\ts-httperror\test.js:56:32)
  * at Module._extensions..js (node:internal/modules/cjs/loader:1272:10)
  * ...
- * {
- *  status :404,
+ * status :404,
  * text:'Not Found'
- * }
+ * 
  */
 
 // or you can throw it immediately
@@ -71,7 +70,7 @@ console.log(error3.status); // => 400
 console.log(error3.message); // => Validation failed
 ```
 
-Change the defualt status from 500 to any other status. To do that just add the status option to createHttpError function.
+Change the defualt status from 500 to any other status. To do that just add the status property to createHttpError function.
 
 ```typescript
 import { createHttpError } from 'ts-httperror';
@@ -85,7 +84,7 @@ console.log(error.status); // => 400
 console.log(error.message); // => The request cannot be fulfilled due to bad syntax
 ```
 
-### Create custom HttpError schema
+### Create HttpError with custom schema
 
 Create custom schema for the HttpError.
 
@@ -173,7 +172,7 @@ console.log(HttpError.isValid(new HttpError())); // => true
 console.log(HttpError.isValid(new Error())); // => false
 ```
 
-- `toClient` - method use to return HttpError object without custom schema options.
+- `toClient` - method use to return HttpError object without custom schema(custom properties).
 
 ```typescript
 import { createHttpError } from 'ts-httperror';
@@ -242,9 +241,8 @@ type CustomHttpErrorOptions = HttpErrorOptions & {
 class CustomHttpError extends HttpError {
   public readonly expose: boolean;
 
-  constructor({ expose, ...httpErrorOptions }: CustomHttpErrorOptions) {
-    // send HttpError constructor options (status,message, etc) to HttpError class
-    super(httpErrorOptions);
+  constructor({ expose, status, message, date }: CustomHttpErrorOptions) {
+    super({status, message, date});
     this.expose = expose || this.status < 500;
   }
 
