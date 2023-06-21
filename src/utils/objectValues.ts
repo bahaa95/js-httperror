@@ -6,7 +6,7 @@
  * @returns array
  */
 export function objectValues<T>(obj: { [s: string]: T }): T[] {
-  if (!obj || obj.length || typeof obj !== 'object') {
+  if (!obj || typeof obj !== 'object' || obj === undefined) {
     return [];
   }
 

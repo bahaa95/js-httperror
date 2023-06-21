@@ -1,5 +1,4 @@
-import { createHttpError } from '../httpError';
-import { Options } from '../types';
+import { createHttpError, Options } from '../';
 import { statusesInfo } from '../../status';
 
 describe('HttpError', () => {

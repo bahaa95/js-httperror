@@ -1,5 +1,5 @@
-import { statuses, ErrorStatusCode } from '../../status';
-import { objectValues } from '../objectValues';
+import { statuses, ErrorStatusCode } from '../status';
+import { objectValues } from './objectValues';
 
 /**
  * Check if the status code is valid http status.
