@@ -115,6 +115,7 @@ export function createHttpError<T extends object>(
         ...otherOptions,
       });
       Object.setPrototypeOf(this, HttpError.prototype);
+      Error.captureStackTrace(this, this.constructor);
     }
 
     /* tslint:disable */
