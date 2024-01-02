@@ -1,6 +1,6 @@
 {
   "name": "ts-httperror",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Create custom Http errors object for node js, express, etc in simple and efficient way.",
   "author": "bahaa adel <probahaa9@gmail.com> (https://bahaa-adel.vercel.app)",
   "main": "dist/index.js",
